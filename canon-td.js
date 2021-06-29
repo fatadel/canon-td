@@ -42,6 +42,9 @@ function addFormDefaults(interactions) {
                 if (interaction["writeOnly"] === undefined) {
                     interaction["writeOnly"] = false;
                 }
+                if (interaction["observable"] === undefined) {
+                    interaction["observable"] = false;
+                }
                 if (form["op"] === undefined) {
                     if (!interaction["readOnly"] && !interaction["writeOnly"]) {
                         form["op"] = ["readproperty", "writeproperty"];
@@ -52,6 +55,12 @@ function addFormDefaults(interactions) {
                     }
                 }
             } else if (interactions === "actions") {
+                if (interaction["safe"] === undefined) {
+                    interaction["safe"] = false;
+                }
+                if (interaction["idempotent"] === undefined) {
+                    interaction["idempotent"] = false;
+                }
                 if (form["op"] === undefined) {
                     form["op"] = "invokeaction";
                 }
