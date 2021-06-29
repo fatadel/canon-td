@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "ajv": "^6.12.6",
+    "canonical-json": "^0.0.4"
+  }
 }
