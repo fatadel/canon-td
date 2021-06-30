@@ -2,7 +2,7 @@ const fs = require("fs");
 const Ajv = require("ajv");
 const canonifyJSON = require("canonical-json");
 
-if (process.argv.length !== 3) {
+if (process.argv.length < 3) {
     console.error("Please provide a file containing TD to canonicalize as an argument");
     process.exit(-1);
 }
@@ -84,4 +84,4 @@ addSecurityDefaults(["bearer"], "format", "jwt");
 // Populate form default values
 [PROPERTIES, ACTIONS, EVENTS].forEach((interactions) => addFormDefaults(interactions));
 
-fs.writeFileSync("canonical-td.jsonld", canonifyJSON(td, undefined, 2));
+fs.writeFileSync("canonical-td.jsonld", canonifyJSON(td, undefined, parseInt(process.argv[3])));
