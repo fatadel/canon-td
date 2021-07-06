@@ -11,7 +11,14 @@ const td = JSON.parse(fs.readFileSync(process.argv[2], "utf8"));
 const schema = require("./td-json-schema-validation.json");
 
 const ajv = new Ajv();
-ajv.validate(schema, td);
+if (!ajv.validate(schema, td)) {
+    // Concatenate error messages in the following format and throw an error
+    // 1) Error 1...
+    // 2) Error 2...
+    throw Error(ajv.errors.map(
+        (error, index) => `${index + 1}) ${error["message"]}`)
+        .join("\n"));
+}
 
 // Interactions
 const PROPERTIES = "properties";
